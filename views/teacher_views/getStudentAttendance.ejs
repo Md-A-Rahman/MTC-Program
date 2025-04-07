@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Attendance Records</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Month</th>
+                <th>Days Present</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% students.forEach(student => { %>
+                <% for (const [month, daysPresent] of Object.entries(student.attendance || {})) { %>
+                    <tr>
+                        <td><%= student.name %></td>
+                        <td><%= month %></td>
+                        <td><%= daysPresent %></td>
+                    </tr>
+                <% } %> <!-- Correctly closing the for loop -->
+            <% }) %> <!-- Correctly closing the forEach loop -->
+        </tbody>
+    </table>
+</body>
+</html>

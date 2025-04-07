@@ -1,8 +1,8 @@
 require('dotenv').config(); // Load environment variables
 const express = require('express');
 const mongoose = require('mongoose');
-const adminRoutes = require('./old/users/admin');
-const teacherRoutes = require('./old/users/teacher')
+const adminRoutes = require('./routes/adminRoutes');
+const teacherRoutes = require('./routes/teacherRoutes')
 const app = express();
 const PORT = 3000;
 
