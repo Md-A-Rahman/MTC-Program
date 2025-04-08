@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const adminRoutes = require('./routes/adminRoutes');
 const teacherRoutes = require('./routes/teacherRoutes')
+const session = require('express-session');
 const app = express();
 const PORT = 3000;
 
@@ -11,6 +12,19 @@ app.set('views', './views'); // Set the directory for EJS templates
 
 app.use(express.json()); // Middleware to parse JSON data
 app.use(express.urlencoded({extended:true}));  // Middleware to parse URL-encoded data
+
+app.use(session({
+  secret: 'mar', 
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+// Debug session
+app.use((req, res, next) => {
+  console.log('Session:', req.session); // Log the session object
+  next();
+});
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI);
